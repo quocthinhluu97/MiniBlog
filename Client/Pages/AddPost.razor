@@ -1,0 +1,17 @@
+﻿@page "/addpost"
+@inherits AddPostBase
+
+<BlogHeader Heading="MiniBlog" SubHeading="Add Post"></BlogHeader>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="editor">
+                <input @bind="@Title" placeholder="Title" class="form-control"/>
+                <textarea @bind="@Post" placeholder="Write your post" rows="25"></textarea>
+                <button class="btn btn-primary float-right" @onclick="@SavePost">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,14 @@
+﻿@page "/viewpost/{postId:int}" 
+@inherits ViewPostBase
+
+<BlogHeader Heading="@blogPost.Title" Author="@blogPost.Author" PostedDate="@blogPost.PostedDate"></BlogHeader>
+
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                @blogPost.Post
+            </div>
+        </div>
+    </div>
+</article>

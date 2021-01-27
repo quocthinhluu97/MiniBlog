@@ -1,0 +1,22 @@
+﻿@inherits BlogHeaderBase
+
+<header class="masthead" style="background-image: url('/img/home-bg.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="@((Author != null && PostedDate != DateTimeOffset.MinValue) ? "post-heading" : "site-heading" )">
+                    <h1>@Heading</h1>
+                    @if (SubHeading != null)
+                    {
+                        <span class="subheading">@SubHeading</span>
+                    }
+                    @if (Author != null && PostedDate != DateTimeOffset.MinValue)
+                    {
+                        <span class="meta">Posted by <a href="#">@Author</a> on @PostedDate</span>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

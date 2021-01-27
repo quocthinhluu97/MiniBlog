@@ -1,0 +1,16 @@
+﻿@page "/"
+@inherits IndexBase
+
+<BlogHeader Heading="MiniBlog" SubHeading="A blazor powered blog app"></BlogHeader>
+
+<body>
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            @foreach (var post in blogPosts)
+            {
+                <BlogPostPreview BlogPost="@post"></BlogPostPreview>
+                <hr />
+            }
+        </div>
+    </div>
+</body>
