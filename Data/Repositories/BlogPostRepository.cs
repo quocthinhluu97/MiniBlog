@@ -28,8 +28,10 @@ namespace MiniBlog.Data.Repositories
         public BlogPost AddPost(BlogPost newBlogPost)
         {
 
-            newBlogPost.Id = _appDbContext.BlogPosts.OrderByDescending(x => x.Id).First().Id + 1;
+            //newBlogPost.Id = _appDbContext.BlogPosts.OrderByDescending(x => x.Id).First().Id + 1;
             _appDbContext.BlogPosts.Add(newBlogPost);
+            _appDbContext.SaveChanges();
+
             return newBlogPost;
         }
     }

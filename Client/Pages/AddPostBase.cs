@@ -12,11 +12,14 @@ namespace MiniBlog.Client.Pages
     {
         [Inject]
         public IBlogPostDataService BlogPostDataService { get; set; }
-        private readonly NavigationManager _navigationManager;
+
+        [Inject]
+        private NavigationManager navigationManager { get; set; }
 
         public string Title { get; set; }
         public string Post { get; set; }
         public string Author { get; set; }
+
         public async Task SavePost()
         {
             var newPost = new BlogPost
@@ -26,9 +29,11 @@ namespace MiniBlog.Client.Pages
                 Author = Author
             };
 
-            var result = await BlogPostDataService.AddBlogPost(newPost);
+            BlogPost savedPost = await BlogPostDataService.AddBlogPost(newPost);
 
-            //_navigationManager.NavigateTo("https://google.com");
+            if (savedPost != null) {
+                navigationManager.NavigateTo($"viewpost/{savedPost.Id}");
+            }
         }
 
     }

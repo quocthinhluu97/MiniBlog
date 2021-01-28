@@ -18,6 +18,7 @@ namespace MiniBlog.Server.Controllers
         {
             _blogPostRepository = blogPostRepository;
         }
+
         [HttpGet]
         public IActionResult GetBlogPosts()
         {
@@ -50,9 +51,9 @@ namespace MiniBlog.Server.Controllers
                 return BadRequest(ModelState);
             }
 
-            _blogPostRepository.AddPost(newBlogPost);
+            var createdBlogPost = _blogPostRepository.AddPost(newBlogPost);
 
-            return Created("new blog post", newBlogPost);
+            return Created($"api/blogpost/{newBlogPost.Id}", createdBlogPost);
         }
     }
 }

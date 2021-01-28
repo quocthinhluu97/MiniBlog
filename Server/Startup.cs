@@ -10,6 +10,7 @@ using MiniBlog.Client.Services;
 using MiniBlog.Data;
 using System;
 using System.Linq;
+using MiniBlog.Data.Repositories;
 
 namespace MiniBlog.Server
 {
@@ -29,7 +30,8 @@ namespace MiniBlog.Server
             services.AddControllersWithViews();
             services.AddRazorPages();
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddScoped<IBlogPostDataService, BlogPostDataService>();
+            //services.AddDbContext<AppDbContext>(options => options.UseInMemoryDatabase(databaseName: "BlogPostMockDb"));
+            services.AddScoped<IBlogPostRepository, BlogPostRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
