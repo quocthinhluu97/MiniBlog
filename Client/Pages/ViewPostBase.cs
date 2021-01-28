@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Markdig;
 
 namespace MiniBlog.Client.Pages
 {
@@ -25,6 +26,7 @@ namespace MiniBlog.Client.Pages
         private async Task LoadBlogPost()
         {
             blogPost = await BlogPostDataService.GetBlogPostById(postId);
+            blogPost.Post = Markdown.ToHtml(blogPost.Post);
         }
     }
 }

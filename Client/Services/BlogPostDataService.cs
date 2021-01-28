@@ -31,14 +31,10 @@ namespace MiniBlog.Client.Services
 
         public async Task<BlogPost> AddBlogPost(BlogPost newBlogPost)
         {
-            //var newBlogPostJson = new StringContent(JsonSerializer.Serialize(newBlogPost), Encoding.UTF8, "application/json");
-            //var response = await _httpClient.PostAsync($"api/blogpost", newBlogPostJson);
-
             var content = JsonContent.Create(newBlogPost);
             var response = await _httpClient.PostAsync($"api/blogpost", content);
 
             if (response.IsSuccessStatusCode) {
-                //return await JsonSerializer.DeserializeAsync<BlogPost>(await response.Content.ReadAsStreamAsync());
                 BlogPost model = await response.Content.ReadFromJsonAsync<BlogPost>();
                 return model;
             }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 using MiniBlog.Client.Services;
 using MiniBlog.Shared;
 using System;
@@ -16,9 +17,20 @@ namespace MiniBlog.Client.Pages
         [Inject]
         private NavigationManager navigationManager { get; set; }
 
+        [Inject]
+        private IJSRuntime JSRuntime { get; set; }
+
         public string Title { get; set; }
         public string Post { get; set; }
         public string Author { get; set; }
+
+        protected int CharacterCount { get; set; }
+        public ElementReference editor;
+
+        public async Task UpdateCharacterCount()
+        {
+            CharacterCount = await JSRuntime.InvokeAsync<int>("MiniBlog.getCharacterCount", editor);
+        }
 
         public async Task SavePost()
         {
