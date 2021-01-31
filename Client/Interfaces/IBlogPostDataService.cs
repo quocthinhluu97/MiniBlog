@@ -9,5 +9,7 @@ namespace MiniBlog.Client.Services
         Task<IEnumerable<BlogPost>> GetBlogPosts();
         Task<BlogPost> GetBlogPostById(int id);
         Task<BlogPost> AddBlogPost(BlogPost newBlogPost);
+        Task<BlogPost> UpdateBlogPost(BlogPost blogPost);
+        Task DeleteBlogPost(int id);
     }
 }

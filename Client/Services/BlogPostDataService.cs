@@ -43,5 +43,27 @@ namespace MiniBlog.Client.Services
                 return null;
             }
         }
+
+        public async Task<BlogPost> UpdateBlogPost(BlogPost blogPost)
+        {
+            var blogPostJson = JsonContent.Create(blogPost);
+
+            var response = await _httpClient.PutAsync($"api/blogpost", blogPostJson);
+
+            if (response.IsSuccessStatusCode)
+            {
+                BlogPost model = await response.Content.ReadFromJsonAsync<BlogPost>();
+                return model;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public async Task DeleteBlogPost(int id)
+        {
+            await _httpClient.DeleteAsync($"api/blogpost/{id}");
+        }
     }
 }

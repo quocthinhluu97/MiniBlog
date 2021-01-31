@@ -11,6 +11,7 @@ using MiniBlog.Data;
 using System;
 using System.Linq;
 using MiniBlog.Data.Repositories;
+using AutoMapper;
 
 namespace MiniBlog.Server
 {

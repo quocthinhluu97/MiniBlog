@@ -1,0 +1,39 @@
+﻿@page "/addpost"
+@page "/editpost/{PostId}"
+@inherits PostEditorBase
+
+@if (IsEdit)
+{
+    <BlogHeader Heading="MiniBlog" SubHeading="Update Post"></BlogHeader>
+}
+else
+{
+    <BlogHeader Heading="MiniBlog" SubHeading="Add Post"></BlogHeader>
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            @if (IsEdit)
+            {
+                <div class="editor">
+                    <input @bind="@ExistingBlogPost.Title" placeholder="Title" class="form-control" />
+                    <textarea @bind="@ExistingBlogPost.Post" @ref="editor" @onkeyup="@UpdateCharacterCount" placeholder="Update your post" rows="25"></textarea>
+                    <button class="btn btn-primary float-right" @onclick="@UpdatePost">Update</button>
+                    <button class="btn btn-primary float-right" @onclick="@DeletePost">Delete</button>
+                    <label>@CharacterCount character(s)</label>
+                </div>
+            }
+            else
+            {
+                <div class="editor">
+                    <input @bind="@Title" placeholder="Title" class="form-control" />
+                    <textarea @bind="@Post" @ref="editor" @onkeyup="@UpdateCharacterCount" placeholder="Write your post" rows="25"></textarea>
+                    <button class="btn btn-primary float-right" @onclick="@SavePost">Save</button>
+                    <label>@CharacterCount character(s)</label>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

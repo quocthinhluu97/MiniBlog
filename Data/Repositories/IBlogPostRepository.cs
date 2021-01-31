@@ -8,5 +8,8 @@ namespace MiniBlog.Data.Repositories
         BlogPost AddPost(BlogPost newBlogPost);
         BlogPost GetBlogPostById(int postId);
         IEnumerable<BlogPost> GetBlogPosts();
+        BlogPost UpdateBlogPost(BlogPost blogPost);
+        void DeleteBlogPost(int postId); 
+
     }
 }
