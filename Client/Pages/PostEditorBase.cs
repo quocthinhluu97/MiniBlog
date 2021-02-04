@@ -15,7 +15,7 @@ namespace MiniBlog.Client.Pages
         public IBlogPostDataService BlogPostDataService { get; set; }
 
         [Inject]
-        private NavigationManager navigationManager { get; set; }
+        private NavigationManager NavigationManager { get; set; }
 
         [Inject]
         private IJSRuntime JSRuntime { get; set; }
@@ -63,7 +63,7 @@ namespace MiniBlog.Client.Pages
             BlogPost savedPost = await BlogPostDataService.AddBlogPost(newPost);
 
             if (savedPost != null) {
-                navigationManager.NavigateTo($"viewpost/{savedPost.Id}");
+                NavigationManager.NavigateTo($"viewpost/{savedPost.Id}");
             }
         }
 
@@ -72,7 +72,7 @@ namespace MiniBlog.Client.Pages
             var updatedBlogPost = await BlogPostDataService.UpdateBlogPost(ExistingBlogPost);
 
             if (updatedBlogPost != null) {
-                navigationManager.NavigateTo($"viewpost/{updatedBlogPost.Id}");
+                NavigationManager.NavigateTo($"viewpost/{updatedBlogPost.Id}");
             }
         }
 
@@ -80,7 +80,7 @@ namespace MiniBlog.Client.Pages
         {
             await BlogPostDataService.DeleteBlogPost(ExistingBlogPost.Id);
 
-            navigationManager.NavigateTo($"/");
+            NavigationManager.NavigateTo($"/");
         }
     }
 }

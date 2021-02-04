@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MiniBlog.Data.Repositories;
 using MiniBlog.Shared;
 using System;
@@ -41,6 +42,7 @@ namespace MiniBlog.Server.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult AddBlogPost([FromBody] BlogPost newBlogPost)
         {
             if (newBlogPost == null)
@@ -59,6 +61,7 @@ namespace MiniBlog.Server.Controllers
         }
 
         [HttpPut]
+        [Authorize]
         public IActionResult UpdateBlogPost([FromBody] BlogPost blogPost)
         {
             if (blogPost == null)
@@ -89,6 +92,7 @@ namespace MiniBlog.Server.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         public IActionResult DeleteBlogPost(int id)
         {
             var blogPostToDelete = _blogPostRepository.GetBlogPostById(id);

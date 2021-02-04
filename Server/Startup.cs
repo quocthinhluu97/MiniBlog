@@ -12,6 +12,9 @@ using System;
 using System.Linq;
 using MiniBlog.Data.Repositories;
 using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace MiniBlog.Server
 {
@@ -33,6 +36,20 @@ namespace MiniBlog.Server
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             //services.AddDbContext<AppDbContext>(options => options.UseInMemoryDatabase(databaseName: "BlogPostMockDb"));
             services.AddScoped<IBlogPostRepository, BlogPostRepository>();
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                    .AddJwtBearer(options =>
+                    {
+                        options.TokenValidationParameters = new TokenValidationParameters
+                        {
+                            ValidateIssuer = true,
+                            ValidateAudience = true,
+                            ValidateLifetime = true,
+                            ValidateIssuerSigningKey = true,
+                            ValidIssuer = Configuration.GetSection("Jwt")["JwtIssuer"],
+                            ValidAudience = Configuration.GetSection("Jwt")["JwtIssuer"],
+                            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration.GetSection("Jwt")["JwtSecurityKey"]))
+                        };
+                    });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,6 +71,7 @@ namespace MiniBlog.Server
             app.UseBlazorFrameworkFiles();
             app.UseStaticFiles();
 
+            app.UseAuthentication();
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>

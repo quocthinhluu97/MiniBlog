@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MiniBlog.Client", "Client\M
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MiniBlog.Shared", "Shared\MiniBlog.Shared.csproj", "{C5505A22-2E4B-4AEF-996D-3FEBA140C18A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniBlog.Data", "Data\MiniBlog.Data.csproj", "{4800A59A-7692-4B08-987C-A0C85F2EE3A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MiniBlog.Data", "Data\MiniBlog.Data.csproj", "{4800A59A-7692-4B08-987C-A0C85F2EE3A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
