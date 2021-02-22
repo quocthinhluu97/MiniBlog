@@ -14,7 +14,7 @@ namespace MiniBlog.Client.Pages
         [Inject]
         public IBlogPostDataService BlogPostDataService{ get; set; }
     
-        protected List<BlogPost> blogPosts { get; set; } = new List<BlogPost>();
+        protected List<BlogPost> BlogPosts { get; set; } = new List<BlogPost>();
 
         protected override async Task OnInitializedAsync()
         {
@@ -22,7 +22,7 @@ namespace MiniBlog.Client.Pages
         }
         private async Task LoadBlogPosts()
         {
-            blogPosts = (await BlogPostDataService.GetBlogPosts()).ToList();
+            BlogPosts = (await BlogPostDataService.GetBlogPosts()).ToList();
         }
     }
 }

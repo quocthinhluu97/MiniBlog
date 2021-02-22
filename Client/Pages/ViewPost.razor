@@ -1,4 +1,5 @@
 ﻿@page "/viewpost/{postId:int}" 
+@using MiniBlog.Client.Services
 @inherits ViewPostBase
 
 <BlogHeader Heading="@blogPost.Title" Author="@blogPost.Author" PostedDate="@blogPost.PostedDate"></BlogHeader>
@@ -10,10 +11,13 @@
                 @((MarkupString)blogPost.Post)
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <NavLink class="btn btn-primary float-right" href="@($"/editpost/{blogPost.Id}")">Edit</NavLink>
+        @if (LoginService.IsLoggedIn)
+        {
+            <div class="row">
+                <div class="col-md-12">
+                    <NavLink class="btn btn-primary float-right" href="@($"/editpost/{blogPost.Id}")">Edit</NavLink>
+                </div>
             </div>
-        </div>
+        }
     </div>
 </article>

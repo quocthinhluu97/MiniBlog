@@ -20,13 +20,11 @@ namespace MiniBlog.Client.Services
         }
         public async Task<IEnumerable<BlogPost>> GetBlogPosts()
         {
-            return await JsonSerializer.DeserializeAsync<IEnumerable<BlogPost>>
-                (await _httpClient.GetStreamAsync($"api/blogpost"), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
+            return await _httpClient.GetFromJsonAsync<IEnumerable<BlogPost>>($"api/blogpost");
         }
         public async Task<BlogPost> GetBlogPostById(int id)
         {
-            return await JsonSerializer.DeserializeAsync<BlogPost>
-                (await _httpClient.GetStreamAsync($"api/blogpost/{id}"), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
+            return await _httpClient.GetFromJsonAsync<BlogPost>($"api/blogpost/{id}");
         }
 
         public async Task<BlogPost> AddBlogPost(BlogPost newBlogPost)

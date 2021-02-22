@@ -12,6 +12,8 @@ namespace MiniBlog.Client.Shared
     {
         [Inject]
         public ILoginService LoginService { get; set; }
+        [Inject]
+        public NavigationManager NavigationManager { get; set; }
 
         public LoginDetails LoginDetails { get; set; } = new LoginDetails();
 
@@ -23,6 +25,8 @@ namespace MiniBlog.Client.Shared
         public async Task Logout()
         {
             await LoginService.Logout();
+            NavigationManager.NavigateTo("/");
+            
         }
     }
 }

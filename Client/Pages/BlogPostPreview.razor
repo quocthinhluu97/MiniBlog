@@ -1,15 +1,15 @@
 ﻿@inherits BlogPostPreviewBase
 
 <div class="post-preview">
-    <NavLink href="@($"viewpost/{blogPost.Id}")">
+    <NavLink href="@($"viewpost/{BlogPost.Id}")">
         <h2 class="post-title">
-            @blogPost.Title
+            @BlogPost.Title
         </h2>
         <h3 class="post-subtitle">
-            @((MarkupString)blogPost.PostSummary)
+            @((MarkupString)BlogPost.PostSummary)
         </h3>
     </NavLink>
     <p class="post-meta">Posted by 
-    <NavLink href="/">@blogPost.Author</NavLink>
-    on @blogPost.PostedDate</p>
+    <NavLink href="/">@BlogPost.Author</NavLink>
+    on @BlogPost.PostedDate</p>
 </div>

@@ -1,8 +1,9 @@
 ﻿@page "/addpost"
 @page "/editpost/{PostId}"
+@using MiniBlog.Client.Services
 @inherits PostEditorBase
 
-@if (IsEdit)
+@if (IsEdit && LoginService.IsLoggedIn)
 {
     <BlogHeader Heading="MiniBlog" SubHeading="Update Post"></BlogHeader>
 }
@@ -14,7 +15,7 @@ else
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            @if (IsEdit)
+            @if (IsEdit && LoginService.IsLoggedIn)
             {
                 <div class="editor">
                     <input @bind="@ExistingBlogPost.Title" placeholder="Title" class="form-control" />

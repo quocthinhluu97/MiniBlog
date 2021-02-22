@@ -11,7 +11,7 @@ namespace MiniBlog.Client.Pages
     public class BlogPostPreviewBase : ComponentBase
     {
         [Parameter]
-        public BlogPost blogPost { get; set; }
+        public BlogPost BlogPost { get; set; }
 
         protected override void OnInitialized()
         {
@@ -19,7 +19,7 @@ namespace MiniBlog.Client.Pages
         }
         private void LoadBlogPreview()
         {
-            blogPost.Post = Markdown.ToHtml(blogPost.Post);
+            BlogPost.Post = Markdown.ToHtml(BlogPost.Post);
         }
     }
 }

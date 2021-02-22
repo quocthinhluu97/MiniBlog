@@ -13,9 +13,11 @@ namespace MiniBlog.Client.Pages
     {
         [Inject]
         public IBlogPostDataService BlogPostDataService { get; set; }
+        [Inject]
+        public ILoginService LoginService { get; set; }
 
         [Parameter]
-        public int postId { get; set; }
+        public int PostId { get; set; }
 
         protected BlogPost blogPost { get; set; } = new BlogPost();
 
@@ -25,7 +27,7 @@ namespace MiniBlog.Client.Pages
         }
         private async Task LoadBlogPost()
         {
-            blogPost = await BlogPostDataService.GetBlogPostById(postId);
+            blogPost = await BlogPostDataService.GetBlogPostById(PostId);
             blogPost.Post = Markdown.ToHtml(blogPost.Post);
         }
     }

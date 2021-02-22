@@ -20,12 +20,15 @@ namespace MiniBlog.Server
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private IConfiguration Configuration { get; }
+        
+        public Startup(IWebHostEnvironment webHostEnvironment)
         {
-            Configuration = configuration;
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(webHostEnvironment.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+            Configuration = builder.Build();
         }
-
-        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
@@ -73,7 +76,7 @@ namespace MiniBlog.Server
 
             app.UseAuthentication();
             app.UseRouting();
-
+            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();

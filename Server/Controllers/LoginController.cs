@@ -9,10 +9,13 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MiniBlog.Server.Controllers
 {
-    public class LoginController : Controller
+    [ApiController]
+    [Route("api/[controller]")]
+    public class LoginController : ControllerBase
     {
         public IConfiguration Configuration { get; }
 

@@ -16,6 +16,9 @@ namespace MiniBlog.Client.Pages
 
         [Inject]
         private NavigationManager NavigationManager { get; set; }
+        
+        [Inject]
+        public ILoginService LoginService { get; set; }
 
         [Inject]
         private IJSRuntime JSRuntime { get; set; }

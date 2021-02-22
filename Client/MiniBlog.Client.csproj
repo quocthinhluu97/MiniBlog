@@ -21,6 +21,7 @@
     <Content Update="wwwroot\css\clean-blog - Copy.min.css">
       <DependentUpon>clean-blog.min.css</DependentUpon>
     </Content>
+    <Content Remove="appsettings.json" />
   </ItemGroup>
 
 </Project>
